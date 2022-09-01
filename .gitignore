@@ -33,4 +33,4 @@ node_modules
 sftp-config.json
 .ftppass
 *.zip
-src/node_modules/*
+node_modules/*

@@ -1,0 +1,162 @@
+@import "mixin";
+.footer {
+	padding: 5%;
+	background-color: #fff;
+}
+.footer h2 {
+	color: $cor-primaria;
+	font-weight: normal;
+	font-size: 1.5rem;
+}
+.footer__links {
+	@include d-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem 0;
+}
+.footer__link a {
+	background-color: #d3d3d3;
+	padding: 1rem;
+	display: inline-block;
+	color: #707070;
+	text-align: center;
+	@include font-textos;
+}
+.footer__link a:hover {
+	background-color: #e8e8e8;
+}
+.footer__wrapper {
+	text-align: center;
+}
+.footer__blog,
+.footer__menu,
+.footer__infos {
+	margin: 2rem 0;
+}
+.footer__menu li {
+	margin: 1rem 0;
+	@include font-textos;
+	transition: 0.3s;
+}
+.footer__menu a li:hover,
+.footer__blog a li:hover {
+	color: $cor-primaria;
+}
+.footer__blog a li {
+	text-decoration: underline;
+	margin: 1rem 0;
+	@include font-textos;
+	transition: 0.3s;
+}
+.footer__info a {
+	margin: 1rem 0;
+	@include d-flex;
+	justify-content: center;
+}
+.footer__info svg {
+	font-size: 1.25rem;
+}
+.footer__info path {
+	color: $cor-primaria;
+}
+.footer__info p {
+	@include font-textos;
+	margin-left: 0.5rem;
+}
+.footer__socials {
+	display: block;
+	max-width: 25rem;
+	margin: auto;
+}
+.footer__socials h3 {
+	font-size: 1rem;
+	color: $cor-primaria;
+	margin-top: 2rem;
+	text-align: center;
+}
+.footer__socials .button {
+	@include btn-primario;
+	width: 100%;
+	text-align: center;
+}
+.footer__socials div {
+	display: flex;
+	justify-content: center;
+	margin: 1rem 0;
+}
+.footer__social svg {
+	font-size: 1.75rem;
+	margin: 0 0.5rem;
+}
+.footer__social path {
+	color: $cor-primaria;
+}
+.footer__catalog {
+	border: 2px solid #707070;
+	padding: 1rem;
+	align-items: center;
+}
+.footer__catalog a {
+	margin-left: 0.5rem;
+	font-size: 0.875rem;
+	font-weight: bold;
+}
+.footer__catalog svg {
+	font-size: 1.5rem;
+}
+.footer__copyright h2 {
+	color: #707070;
+	font-size: 1rem;
+}
+.footer__copyright p {
+	font-size: 0.875rem;
+	margin-top: 0.5rem;
+}
+@media (min-width: 1025px) {
+	.footer {
+		padding: 6rem 5%;
+	}
+	.footer__link {
+		width: 300px;
+	}
+	.footer__link a {
+		width: 100%;
+	}
+	.footer__wrapper {
+		@include d-flex;
+		align-items: flex-start;
+		text-align: start;
+		margin-top: 4rem;
+	}
+	.footer__info a {
+		justify-content: flex-start;
+	}
+	.footer__socials {
+		max-width: unset;
+		margin: unset;
+	}
+	.footer__catalog svg {
+		font-size: 2rem;
+	}
+	.footer__copyright h2 {
+		font-size: 1.25rem;
+	}
+	.footer__copyright p {
+		font-size: 1rem;
+	}
+	.footer__menu {
+		width: 15%;
+	}
+}
+@media (min-width: 1280px) {
+	.footer__menu {
+		width: unset;
+	}
+}
+@media (min-width: 1921px) {
+	.footer__links {
+		max-width: 100rem;
+		margin: auto;
+	}
+}

@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import "mixin";
+/*RESET E PADRÃO */
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+body {
+	font-family: "Poppins", sans-serif;
+	margin: 0px;
+	font-size: 1.125rem;
+	background-color: #fafafa;
+}
+
+ul,
+ol {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: #707070;
+}
+
+a:hover {
+	color: $cor-primaria;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+input,
+button,
+::placeholder {
+	font-family: "Poppins", sans-serif;
+}
+
+.page-header__search {
+	margin-top: 8rem;
+	margin-bottom: 4rem;
+	padding: 0 5%;
+}
+@media (min-width: 1025px) {
+	.page-header__search {
+		margin-top: 12rem;
+	}
+}
+@media (min-width: 1921px) {
+	.page-header__search {
+		margin-top: 16rem;
+	}
+}
+
+#content,
+#wrapper {
+	margin-top: 114px;
+}
+@media (min-width: 1025px) {
+	#content,
+	#wrapper {
+		margin-top: 141px;
+	}
+}

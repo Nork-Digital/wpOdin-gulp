@@ -1,0 +1,116 @@
+//Mixin's e variaveis
+$cor-primaria: #ca1316;
+$cor-secundaria: #0933a3;
+
+@mixin grid {
+	max-width: 90%;
+	margin: auto;
+}
+@mixin d-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+@mixin font-titulos {
+	@media (min-width: 1025px) {
+		font-size: 3rem;
+	}
+	@media (max-width: 1024px) {
+		font-size: 2.25rem;
+	}
+	@media (max-width: 480px) {
+		font-size: 2rem;
+	}
+}
+@mixin font-textos {
+	@media (min-width: 1025px) {
+		font-size: 1rem;
+	}
+	@media (max-width: 1024px) {
+		font-size: 0.875rem;
+	}
+}
+@mixin margin-secao {
+	@media (min-width: 1025px) {
+		margin-top: 8rem;
+	}
+	@media (max-width: 1024px) {
+		margin-top: 4rem;
+	}
+}
+
+@mixin btn-primario {
+	background: $cor-primaria;
+	display: inline-block;
+	padding: 0.75rem 2rem;
+	font-weight: bold;
+	color: #fff;
+	text-transform: uppercase;
+	transition: 0.3s;
+	border: 2px solid $cor-primaria;
+	font-size: 0.875rem;
+	@include btn-primario-hover;
+}
+@mixin btn-primario-hover {
+	&:hover {
+		background: transparent;
+		color: $cor-primaria;
+	}
+}
+@mixin btn-secundario {
+	background: transparent;
+	display: inline-block;
+	padding: 0.75rem 2rem;
+	font-weight: bold;
+	color: $cor-primaria;
+	text-transform: uppercase;
+	transition: 0.3s;
+	border: 2px solid $cor-primaria;
+	font-size: 0.875rem;
+	@include btn-secundario-hover;
+}
+@mixin btn-secundario-hover {
+	&:hover {
+		background: $cor-primaria;
+		color: #fff;
+	}
+}
+@mixin titulo-primario {
+	@include font-titulos;
+	@include titulo-primario-after;
+	color: $cor-primaria;
+}
+@mixin titulo-primario-after {
+	&:after {
+		content: "";
+		width: 40px;
+		height: 3px;
+		display: block;
+		background: #fff;
+		margin-top: 8px;
+	}
+}
+@mixin titulo-secundario {
+	@include font-titulos;
+	@include titulo-secundario-after;
+	color: $cor-primaria;
+	font-weight: normal;
+}
+@mixin titulo-secundario-after {
+	&:after {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 3px;
+		background: #fff;
+		margin-top: 16px;
+	}
+}
+@keyframes seta {
+	from {
+		right: 10%;
+	}
+	to {
+		right: calc(10% - 10px);
+	}
+}

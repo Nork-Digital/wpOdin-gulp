@@ -2,11 +2,11 @@
  * Custom login styles.
  */
 .login h1 a {
-	background: url('../images/logo-login.png') center top no-repeat !important;
-	background: url('../images/logo-login.svg') center top no-repeat !important;
-	background-size: 80px 80px !important;
-	height: 80px !important;
-	width: 80px !important;
+	background: url('https://cdn.norktech.com.br/img/logo-nork-tecnologia.png') center top no-repeat !important;
+	background: url('https://cdn.norktech.com.br/img/logo-nork-tecnologia.png') center top no-repeat !important;
+	background-size: 250px 74px !important;
+	height: 74px !important;
+	width: 250px !important;
 }
 
 /**

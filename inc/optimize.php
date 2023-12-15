@@ -540,3 +540,15 @@ function iconic_remove_password_strength()
     wp_dequeue_script('wc-password-strength-meter');
 }
 add_action('wp_print_scripts', 'iconic_remove_password_strength', 10);
+
+
+
+/**
+ * Use e-mail login
+ */
+
+add_filter('woocommerce_new_customer_data', function ($data) {
+    $data['user_login'] = $data['user_email'];
+
+    return $data;
+});

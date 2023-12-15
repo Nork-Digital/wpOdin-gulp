@@ -24,14 +24,6 @@ function odin_admin_adminbar_remove_logo() {
 
 add_action( 'wp_before_admin_bar_render', 'odin_admin_adminbar_remove_logo' );
 
-/**
- * Custom Footer.
- */
-function odin_admin_footer() {
-	echo date( 'Y' ) . ' - ' . get_bloginfo( 'name' );
-}
-
-add_filter( 'admin_footer_text', 'odin_admin_footer' );
 
 /**
  * Custom logo URL.

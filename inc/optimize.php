@@ -330,53 +330,53 @@ function login_styles()
     ?>
 <style type="text/css">
 body {
-    background: #e8b800 !important;
-    /* Old browsers */
-    background: -moz-linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#e8b800', endColorstr='#000', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
-    background-attachment: fixed !important;
+  background: #e8b800 !important;
+  /* Old browsers */
+  background: -moz-linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#e8b800', endColorstr='#000', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  background-attachment: fixed !important;
 }
 
 #wp-submit {
-    border: none !important;
-    box-shadow: none !important;
-    background: #000 !important;
-    text-shadow: none !important;
-    border-radius: 4px !important;
-    -webkit-border-radius: 4px !important;
-    color: #fff !important;
-    display: block;
-    width: 100% !important;
-    margin: 30px 0 0 0 !important;
-    font-size: 16px;
-    padding: 5px 0 !important;
-    height: auto !important;
-    transition: all 0.5s;
+  border: none !important;
+  box-shadow: none !important;
+  background: #000 !important;
+  text-shadow: none !important;
+  border-radius: 4px !important;
+  -webkit-border-radius: 4px !important;
+  color: #fff !important;
+  display: block;
+  width: 100% !important;
+  margin: 30px 0 0 0 !important;
+  font-size: 16px;
+  padding: 5px 0 !important;
+  height: auto !important;
+  transition: all 0.5s;
 }
 
 #wp-submit:hover {
-    background: #e8b800 !important;
+  background: #e8b800 !important;
 }
 
 .login h1 a {
-    background-image: url('http://bbcreative.org/upload/imagens/889e3e8621c81383c4e5684e96a77049.png') !important;
-    background-image: url('http://bbcreative.org/upload/imagens/889e3e8621c81383c4e5684e96a77049.png') !important;
-    background-size: 100% !important;
-    background-position: center center !important;
-    background-repeat: no-repeat;
-    height: 74px !important;
-    width: 250px !important;
+  background-image: url('http://bbcreative.org/upload/imagens/889e3e8621c81383c4e5684e96a77049.png') !important;
+  background-image: url('http://bbcreative.org/upload/imagens/889e3e8621c81383c4e5684e96a77049.png') !important;
+  background-size: 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  height: 74px !important;
+  width: 250px !important;
 }
 
 .login #backtoblog a,
 .login #nav a {
-    color: #fff !important;
+  color: #fff !important;
 }
 </style>
 
@@ -529,17 +529,3 @@ function filter_site_upload_size_limit($size)
     return $size;
 }
 add_filter('upload_size_limit', 'filter_site_upload_size_limit', 20);
-
-
-//desabilita extensões não otimizadas para web
-add_filter('upload_mimes', 'restrict_mime');
-function restrict_mime($mimes)
-{
-    $mimes = array(
-                'mov' => 'video/mov',
-                'avi' => 'video/avi',
-                'bmp' => 'image/bmp',
-                /* 'gif' => 'image/gif', */
-    );
-    return $mimes;
-}

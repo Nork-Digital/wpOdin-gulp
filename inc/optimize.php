@@ -72,7 +72,7 @@ function odin_remove_recent_comments_style()
     global $wp_widget_factory;
 
     if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
-        remove_action('wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ));
+        remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
     }
 }
 
@@ -88,7 +88,7 @@ add_filter('use_default_gallery_style', '__return_false');
  */
 function odin_modify_category_rel($text)
 {
-    $search = array( 'rel="category"', 'rel="category tag"' );
+    $search = array('rel="category"', 'rel="category tag"');
     $text = str_replace($search, 'rel="nofollow"', $text);
 
     return $text;
@@ -117,7 +117,7 @@ add_filter('the_tags', 'odin_modify_tag_rel');
  */
 function disable_emojis_tinymce($plugins)
 {
-    return is_array($plugins) ? array_diff($plugins, array( 'wpemoji' )) : array();
+    return is_array($plugins) ? array_diff($plugins, array('wpemoji')) : array();
 }
 
 add_filter('tiny_mce_plugins', 'disable_emojis_tinymce');
@@ -133,11 +133,11 @@ function wp_tweaks_clear_file_name($filename)
 {
     $sanitized_filename = remove_accents($filename); // Convert to ASCII
 
-  // Standard replacements
+    // Standard replacements
     $invalid = [
-    ' '   => '-',
-    '%20' => '-',
-    '_'   => '-',
+        ' ' => '-',
+        '%20' => '-',
+        '_' => '-',
     ];
 
     $sanitized_filename = str_replace(array_keys($invalid), array_values($invalid), $sanitized_filename);
@@ -147,12 +147,12 @@ function wp_tweaks_clear_file_name($filename)
     $sanitized_filename = str_replace('-.', '.', $sanitized_filename); // Remove last - if at the end
     $sanitized_filename = strtolower($sanitized_filename); // Lowercase
 
-  /**
-   * Apply any more sanitization using this filter
-   *
-   * @var string $sanitized_filename The sanitized filename
-   * @var string $filename           Original filename
-   */
+    /**
+     * Apply any more sanitization using this filter
+     *
+     * @var string $sanitized_filename The sanitized filename
+     * @var string $filename           Original filename
+     */
     $sanitized_filename = apply_filters('wp_tweaks_sanitize_file_name', $sanitized_filename, $filename);
 
     return $sanitized_filename;
@@ -243,26 +243,26 @@ function wp_tweaks_disable_wp_embed_js()
 add_action('init', 'wp_tweaks_disable_oembed', 20);
 function wp_tweaks_disable_oembed()
 {
-  // Remove the REST API endpoint.
+    // Remove the REST API endpoint.
     remove_action('rest_api_init', 'wp_oembed_register_route');
 
-  // Turn off oEmbed auto discovery.
+    // Turn off oEmbed auto discovery.
     add_filter('embed_oembed_discover', '__return_false');
 
-  // Don't filter oEmbed results.
+    // Don't filter oEmbed results.
     remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
 
-  // Remove oEmbed discovery links.
+    // Remove oEmbed discovery links.
     remove_action('wp_head', 'wp_oembed_add_discovery_links');
 
-  // Remove oEmbed-specific JavaScript from the front-end and back-end.
+    // Remove oEmbed-specific JavaScript from the front-end and back-end.
     remove_action('wp_head', 'wp_oembed_add_host_js');
     add_filter('tiny_mce_plugins', 'wp_tweaks_disable_embeds_tiny_mce_plugin');
 
-  // Remove all embeds rewrite rules.
+    // Remove all embeds rewrite rules.
     add_filter('rewrite_rules_array', 'wp_tweaks_disable_embeds_rewrites');
 
-  // Remove filter of the oEmbed result before any HTTP requests are made.
+    // Remove filter of the oEmbed result before any HTTP requests are made.
     remove_filter('pre_oembed_result', 'wp_filter_pre_oembed_result', 10);
 }
 
@@ -307,12 +307,6 @@ function custom_dashboard_help()
     echo '<p>Bem-vindo ao seu site! Precisa de ajuda? <a href="mailto:suporte@nork.digital">abrir chamado</a>. Veja alguns tutoriais que podem te ajudar: <a href="https://www.nork.digital/suporte" target="_blank">Help Nork</a></p>';
     echo '<img src="https://www.nork.digital/wp-content/uploads/2017/10/nork-wordpress.png" />';
 }
-#remover footer
-function remove_footer_admin()
-{
-    echo 'Desenvolvido por <a href="https://www.nork.digital" target="_blank">Nork Digital</a> | Precisa de ajuda? <a href="mailto:suporte@nork.digital" target="_blank">Suporte</a></p>';
-}
-add_filter('admin_footer_text', 'remove_footer_admin');
 
 #remover feedback de erro wordpress
 function no_wordpress_errors()
@@ -330,18 +324,10 @@ function login_styles()
     ?>
 <style type="text/css">
 body {
-  background: #e8b800 !important;
-  /* Old browsers */
-  background: -moz-linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(45deg, #e8b800 0%, #fce48a 100%) !important;
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#e8b800', endColorstr='#000', GradientType=1);
-  /* IE6-9 fallback on horizontal gradient */
-  background-attachment: fixed !important;
+  background: #f2f2f2 !important;
 }
+
+
 
 #wp-submit {
   border: none !important;
@@ -361,12 +347,12 @@ body {
 }
 
 #wp-submit:hover {
-  background: #e8b800 !important;
+  background: #262626 !important;
 }
 
 .login h1 a {
-  background-image: url('http://bbcreative.org/upload/imagens/889e3e8621c81383c4e5684e96a77049.png') !important;
-  background-image: url('http://bbcreative.org/upload/imagens/889e3e8621c81383c4e5684e96a77049.png') !important;
+  background-image: url('https://cdn.norktech.com.br/img/logo-nork-tecnologia.png') !important;
+  background-image: url('https://cdn.norktech.com.br/img/logo-nork-tecnologia.png?') !important;
   background-size: 100% !important;
   background-position: center center !important;
   background-repeat: no-repeat;
@@ -376,7 +362,7 @@ body {
 
 .login #backtoblog a,
 .login #nav a {
-  color: #fff !important;
+  color: #262626 !important;
 }
 </style>
 
@@ -400,7 +386,7 @@ add_filter('login_headertitle', 'my_login_logo_url_title');
 add_action('after_setup_theme', 'wp_tweaks_remove_shortlink', 20);
 function wp_tweaks_remove_shortlink()
 {
-  // remove HTML meta tag
+    // remove HTML meta tag
     remove_action('wp_head', 'wp_shortlink_wp_head');
 }
 
@@ -490,8 +476,8 @@ function wp_tweaks_remove_howdy($wp_admin_bar)
     $avatar = get_avatar($current_user->ID, 28);
 
     $wp_admin_bar->add_node([
-    'id' => 'my-account',
-    'title' => $current_user->display_name . $avatar
+        'id' => 'my-account',
+        'title' => $current_user->display_name . $avatar
     ]);
 }
 
@@ -522,7 +508,7 @@ add_shortcode('br', 'line_break_shortcode');
  */
 function filter_site_upload_size_limit($size)
 {
-    if (! current_user_can('manage_options')) {
+    if (!current_user_can('manage_options')) {
         // 10 MB.
         $size = 1024 * 10000;
     }
@@ -556,15 +542,9 @@ add_filter('woocommerce_new_customer_data', function ($data) {
 
 
 /**
- * Display PHP Version in admin dashboard footer
- *
- * 
+ * Custom Footer.
  */
-add_filter('update_footer', 'wp_tweaks_show_php_version', PHP_INT_MAX);
-function wp_tweaks_show_php_version($text)
+function odin_admin_footer()
 {
-    if (\current_user_can('administrator')) {
-        $text .= ( $text ? '<br>' : '' ) . '<span style="float: right;" class="footer_php_version">PHP Version: ' . \esc_html(\PHP_VERSION);
-    }
-    return $text;
+    echo  ' Desenvolvido por <strong>Nork Tecnologia</strong> - ' . 'PHP Version: ' . \esc_html(\PHP_VERSION) . ' - ' . 'WP Version: ' . \esc_html(\get_bloginfo('version')) . ' - ' . 'Theme Version: ' . \esc_html(\wp_get_theme()->get('Version'));
 }

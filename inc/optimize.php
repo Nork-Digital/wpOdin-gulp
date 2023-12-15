@@ -529,3 +529,14 @@ function filter_site_upload_size_limit($size)
     return $size;
 }
 add_filter('upload_size_limit', 'filter_site_upload_size_limit', 20);
+
+
+
+/**
+ * Remove password strength check.
+ */
+function iconic_remove_password_strength()
+{
+    wp_dequeue_script('wc-password-strength-meter');
+}
+add_action('wp_print_scripts', 'iconic_remove_password_strength', 10);

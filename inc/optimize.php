@@ -9,10 +9,10 @@
 function odin_head_cleanup()
 {
     // Category feeds.
-    // remove_action( 'wp_head', 'feed_links_extra', 3 );
+    remove_action('wp_head', 'feed_links_extra', 3);
 
     // Post and comment feeds.
-    // remove_action( 'wp_head', 'feed_links', 2 );
+    remove_action('wp_head', 'feed_links', 2);
 
     // EditURI link.
     remove_action('wp_head', 'rsd_link');
@@ -36,13 +36,13 @@ function odin_head_cleanup()
     remove_action('wp_head', 'wp_generator');
 
     // Emoji's
-    // remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-    // remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-    // remove_action( 'wp_print_styles', 'print_emoji_styles' );
-    // remove_action( 'admin_print_styles', 'print_emoji_styles' );
-    // remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-    // remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-    // remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 }
 
 add_action('init', 'odin_head_cleanup');
@@ -72,7 +72,7 @@ function odin_remove_recent_comments_style()
     global $wp_widget_factory;
 
     if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
-        remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
+        remove_action('wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ));
     }
 }
 
@@ -88,7 +88,7 @@ add_filter('use_default_gallery_style', '__return_false');
  */
 function odin_modify_category_rel($text)
 {
-    $search = array('rel="category"', 'rel="category tag"');
+    $search = array( 'rel="category"', 'rel="category tag"' );
     $text = str_replace($search, 'rel="nofollow"', $text);
 
     return $text;
@@ -117,7 +117,7 @@ add_filter('the_tags', 'odin_modify_tag_rel');
  */
 function disable_emojis_tinymce($plugins)
 {
-    return is_array($plugins) ? array_diff($plugins, array('wpemoji')) : array();
+    return is_array($plugins) ? array_diff($plugins, array( 'wpemoji' )) : array();
 }
 
 add_filter('tiny_mce_plugins', 'disable_emojis_tinymce');
@@ -133,11 +133,11 @@ function wp_tweaks_clear_file_name($filename)
 {
     $sanitized_filename = remove_accents($filename); // Convert to ASCII
 
-    // Standard replacements
+  // Standard replacements
     $invalid = [
-        ' ' => '-',
-        '%20' => '-',
-        '_' => '-',
+    ' '   => '-',
+    '%20' => '-',
+    '_'   => '-',
     ];
 
     $sanitized_filename = str_replace(array_keys($invalid), array_values($invalid), $sanitized_filename);
@@ -147,12 +147,12 @@ function wp_tweaks_clear_file_name($filename)
     $sanitized_filename = str_replace('-.', '.', $sanitized_filename); // Remove last - if at the end
     $sanitized_filename = strtolower($sanitized_filename); // Lowercase
 
-    /**
-     * Apply any more sanitization using this filter
-     *
-     * @var string $sanitized_filename The sanitized filename
-     * @var string $filename           Original filename
-     */
+  /**
+   * Apply any more sanitization using this filter
+   *
+   * @var string $sanitized_filename The sanitized filename
+   * @var string $filename           Original filename
+   */
     $sanitized_filename = apply_filters('wp_tweaks_sanitize_file_name', $sanitized_filename, $filename);
 
     return $sanitized_filename;
@@ -243,26 +243,26 @@ function wp_tweaks_disable_wp_embed_js()
 add_action('init', 'wp_tweaks_disable_oembed', 20);
 function wp_tweaks_disable_oembed()
 {
-    // Remove the REST API endpoint.
+  // Remove the REST API endpoint.
     remove_action('rest_api_init', 'wp_oembed_register_route');
 
-    // Turn off oEmbed auto discovery.
+  // Turn off oEmbed auto discovery.
     add_filter('embed_oembed_discover', '__return_false');
 
-    // Don't filter oEmbed results.
+  // Don't filter oEmbed results.
     remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
 
-    // Remove oEmbed discovery links.
+  // Remove oEmbed discovery links.
     remove_action('wp_head', 'wp_oembed_add_discovery_links');
 
-    // Remove oEmbed-specific JavaScript from the front-end and back-end.
+  // Remove oEmbed-specific JavaScript from the front-end and back-end.
     remove_action('wp_head', 'wp_oembed_add_host_js');
     add_filter('tiny_mce_plugins', 'wp_tweaks_disable_embeds_tiny_mce_plugin');
 
-    // Remove all embeds rewrite rules.
+  // Remove all embeds rewrite rules.
     add_filter('rewrite_rules_array', 'wp_tweaks_disable_embeds_rewrites');
 
-    // Remove filter of the oEmbed result before any HTTP requests are made.
+  // Remove filter of the oEmbed result before any HTTP requests are made.
     remove_filter('pre_oembed_result', 'wp_filter_pre_oembed_result', 10);
 }
 
@@ -307,6 +307,7 @@ function custom_dashboard_help()
     echo '<p>Bem-vindo ao seu site! Precisa de ajuda? <a href="mailto:suporte@nork.digital">abrir chamado</a>. Veja alguns tutoriais que podem te ajudar: <a href="https://www.nork.digital/suporte" target="_blank">Help Nork</a></p>';
     echo '<img src="https://www.nork.digital/wp-content/uploads/2017/10/nork-wordpress.png" />';
 }
+
 
 #remover feedback de erro wordpress
 function no_wordpress_errors()
@@ -386,7 +387,7 @@ add_filter('login_headertitle', 'my_login_logo_url_title');
 add_action('after_setup_theme', 'wp_tweaks_remove_shortlink', 20);
 function wp_tweaks_remove_shortlink()
 {
-    // remove HTML meta tag
+  // remove HTML meta tag
     remove_action('wp_head', 'wp_shortlink_wp_head');
 }
 
@@ -448,7 +449,7 @@ add_action('wp_enqueue_scripts', 'wpdocs_dequeue_dashicon');
 
 // desabilita admin bar
 /* Disable WordPress Admin Bar for all users but admins. */
-show_admin_bar(false);
+show_admin_bar(true);
 
 
 /* desabilitar notificações menos para admins */
@@ -476,8 +477,8 @@ function wp_tweaks_remove_howdy($wp_admin_bar)
     $avatar = get_avatar($current_user->ID, 28);
 
     $wp_admin_bar->add_node([
-        'id' => 'my-account',
-        'title' => $current_user->display_name . $avatar
+    'id' => 'my-account',
+    'title' => $current_user->display_name . $avatar
     ]);
 }
 
@@ -498,49 +499,6 @@ function line_break_shortcode()
 }
 add_shortcode('br', 'line_break_shortcode');
 
-
-//Limita o upload
-/**
- * Filter the upload size limit for non-administrators.
- *
- * @param string $size Upload size limit (in bytes).
- * @return int (maybe) Filtered size limit.
- */
-function filter_site_upload_size_limit($size)
-{
-    if (!current_user_can('manage_options')) {
-        // 10 MB.
-        $size = 1024 * 10000;
-    }
-    return $size;
-}
-add_filter('upload_size_limit', 'filter_site_upload_size_limit', 20);
-
-
-
-/**
- * Remove password strength check.
- */
-function iconic_remove_password_strength()
-{
-    wp_dequeue_script('wc-password-strength-meter');
-}
-add_action('wp_print_scripts', 'iconic_remove_password_strength', 10);
-
-
-
-/**
- * Use e-mail login
- */
-
-add_filter('woocommerce_new_customer_data', function ($data) {
-    $data['user_login'] = $data['user_email'];
-
-    return $data;
-});
-
-
-
 /**
  * Custom Footer.
  */
@@ -548,3 +506,24 @@ function odin_admin_footer()
 {
     echo  ' Desenvolvido por <strong>Nork Tecnologia</strong> - ' . 'PHP Version: ' . \esc_html(\PHP_VERSION) . ' - ' . 'WP Version: ' . \esc_html(\get_bloginfo('version')) . ' - ' . 'Theme Version: ' . \esc_html(\wp_get_theme()->get('Version'));
 }
+add_filter('admin_footer_text', 'odin_admin_footer');
+
+
+/**
+ * Use e-mail login
+ */
+
+ add_filter('woocommerce_new_customer_data', function ($data) {
+    $data['user_login'] = $data['user_email'];
+
+    return $data;
+ });
+
+ /**
+ * Remove password strength check.
+ */
+ function iconic_remove_password_strength()
+ {
+     wp_dequeue_script('wc-password-strength-meter');
+ }
+ add_action('wp_print_scripts', 'iconic_remove_password_strength', 10);
